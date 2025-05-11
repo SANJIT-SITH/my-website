@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>My Art Portfolio</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fefefe;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  header {
+    margin-bottom: 20px;
+  }
+  nav {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  nav button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    max-width: 110px;
+  }
+  nav button:hover,
+  nav button:focus {
+    background-color: #2980b9;
+    outline: none;
+  }
+  section {
+    width: 100%;
+    max-width: 350px;
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+  }
+  section.active {
+    display: flex;
+  }
+  /* Painting Gallery */
+  #gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    gap: 12px;
+  }
+  #gallery img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  #gallery img:hover {
+    transform: scale(1.05);
+  }
+  /* Lightbox for painting preview */
+  #lightbox {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(255,255,255,0.6);
+  }
+  #lightbox:focus {
+    outline: none;
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+  }
+  /* About Section */
+  #about p {
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+  /* Contact Form */
+  #contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  #contact label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #34495e;
+  }
+  #contact input,
+  #contact textarea {
+    padding: 8px 10px;
+    font-size: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s ease;
+  }
+  #contact input:focus,
+  #contact textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  #contact textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+  #contact button {
+    padding: 10px 15px;
+    background-color: #27ae60;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.1rem;
+  }
+  #contact button:hover,
+  #contact button:focus {
+    background-color: #1e8449;
+    outline: none;
+  }
+  #contact .message-success {
+    color: #27ae60;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+  }
+  /* Responsive tweaks */
+  @media (max-width: 360px) {
+    nav button {
+      font-size: 0.9rem;
+      max-width: none;
+      flex: 1;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>My Art Portfolio</h1>
+  <nav role="navigation" aria-label="Page sections">
+    <button id="nav-gallery" aria-controls="gallery" aria-selected="true" tabindex="0">Gallery</button>
+    <button id="nav-about" aria-controls="about" aria-selected="false" tabindex="-1">About</button>
+    <button id="nav-contact" aria-controls="contact" aria-selected="false" tabindex="-1">Contact</button>
+  </nav>
+</header>
+
+<main>
+  <section id="gallery" class="active" tabindex="0" aria-label="Painting Gallery">
+    <!-- Placeholder paintings - you can replace src with your own images -->
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint 2_1 (1).jpg" alt="AFFECTION" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint 2_2.jpg" alt="MATRU DEVO BHAVA" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_24.jpg" alt="MORNING IN THE COURTYARD" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_23.jpg" alt="PORTRAIT OF MAHATMA GANDHI" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_1.jpg" alt="WHISPERS OF THE FEMININE" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint 2_3.jpg" alt="CUTLERY" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_16.jpg" alt="AT THE DINING TABLE" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint 2_1 (1).jpg" alt="NOSTALGIC ABODES" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_6.jpg" alt="FARMER" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_3.jpg" alt="CERAMIC HARMONY" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_4.jpg" alt="MELANCHOLY STRINGS" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_5.jpg" alt="VERMILLION DEVOTION" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_8.jpg" alt="THE EQUESTRIAN" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint 2_4.jpg" alt="FOLK DIVINITY" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint 2_1 (1).jpg" alt="OCEAN'S ODYSSEY" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_15.jpg" alt="LORD OF THE RATH" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_17.jpg" alt="KRISHNA IN FOLK HUES" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_18.jpg" alt="CHROMATICA PISCES" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_20.jpg" alt="ARROW OF DHARMA" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_2.jpg" alt="THE VEILED GAZE" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_22.jpg" alt="SERENADE OF BEAUTY" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint 2_1 (1).jpg" alt="SHADES OF THE BEAUTY" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_25.jpg" alt="RURAL WALL ART:A VILLAGE LEGACY" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_11.jpg" alt="THE BOLLYWOOD ICON" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_9.jpg" alt="GOPALA'S AFFECTION" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_19.jpg" alt="CITRUS AND PETALS" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_21.jpg" alt="MOONLIT RAAS" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_12.jpg" alt="SHIVAJI:LION OF BHARAT" tabindex="0" />
+    <img src="C:\Users\sanji\OneDrive\Desktop\OFFICIAL\paint_13.jpg" alt="still life" tabindex="0" />
+  </section>
+
+  <section id="about" aria-label="About THE ARTIST" tabindex="0">
+    <h2>About Me</h2>
+    <p>
+      Welcome to my art portfolio!MY NAME IS SANJIT SITH. I am a passionate painter with a love for expressing emotions and stories through vibrant colors and textures.
+      Here, you will find a curated selection of my favorite paintings showcasing various styles and techniques.
+    </p>
+    <p>
+      Feel free to explore my gallery and reach out via the contact form if you'd like to connect or inquire about my artwork.
+    </p>
+  </section>
+
+  <section id="contact" aria-label="Contact form" tabindex="0">
+    <h2>Contact Me</h2>
+    <form id="contact-form" aria-live="polite" novalidate>
+      <label for="name">Your Name <span aria-hidden="true" style="color: #e74c3c;">*</span></label>
+      <input type="text" id="name" name="name" required aria-required="true" placeholder="Enter your name" />
+
+      <label for="email">Your Email <span aria-hidden="true" style="color: #e74c3c;">*</span></label>
+      <input type="email" id="email" name="email" required aria-required="true" placeholder="Enter your email" />
+
+      <label for="message">Message <span aria-hidden="true" style="color: #e74c3c;">*</span></label>
+      <textarea id="message" name="message" required aria-required="true" placeholder="Type your message here"></textarea>
+
+      <button type="submit">Send Message</button>
+
+      <div class="message-success" role="alert" aria-live="assertive" style="display:none;"></div>
+    </form>
+  </section>
+</main>
+
+<!-- Lightbox container for enlarged painting preview -->
+<div id="lightbox" tabindex="-1" aria-modal="true" role="dialog" aria-label="Enlarged painting view">
+  <span id="lightbox-close" role="button" aria-label="Close enlarged view" tabindex="0">&times;</span>
+  <img src="" alt="Enlarged painting" />
+</div>
+ <footer>
+        <p>© 2023 My Photography Portfolio. All rights reserved.</p>
+ </footer>
+<script>
+  // Navigation controls to switch sections
+  const navButtons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('main section');
+  navButtons.forEach((button, idx) => {
+    button.addEventListener('click', () => {
+      navButtons.forEach((btn, i) => {
+        btn.setAttribute('aria-selected', i === idx ? "true" : "false");
+        btn.tabIndex = i === idx ? 0 : -1;
+      });
+      sections.forEach((section, i) => {
+        if (i === idx) {
+          section.classList.add('active');
+          section.focus();
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // Lightbox functionality for painting preview
+  const galleryImages = document.querySelectorAll('#gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src.replace('/300/300', '/800/800'); // Larger version
+      lightboxImg.alt = img.alt + ' - enlarged view';
+      lightbox.style.display = 'flex';
+      lightbox.focus();
+    });
+    img.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        img.click();
+      }
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxClose.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      closeLightbox();
+    }
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+      closeLightbox();
+    }
+  });
+
+  // Contact form submission handler
+  const contactForm = document.getElementById('contact-form');
+  const successMessage = contactForm.querySelector('.message-success');
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Basic validation provided by HTML5 required attribute
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+    // Simulate sending message (no backend)
+    successMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+    successMessage.style.display = 'block';
+
+    contactForm.reset();
+
+    // Move focus back to the message for accessibility
+    contactForm.querySelector('#name').focus();
+  });
+</script>
+
+</body>
+</html>
